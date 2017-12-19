@@ -11,29 +11,21 @@ using Voat.Configuration;
 
 namespace Voat.Configuration
 {
-    public class VoatSettings : UpdatableConfigurationSettings<VoatSettings>, IVoatSettings
+    public class VoatSettings : VoatSettings<VoatSettings>
+    {
+
+    }
+
+    public class VoatSettings<T> : UpdatableConfigurationSettings<T>, IVoatSettings where T: VoatSettings<T>, new()
     {
         public VoatSettings()
         {
-            base.OnUpdate += (object sender, VoatSettings newSettings) => {
+            base.OnUpdate += (object sender, T newSettings) => {
                 //The IsDevelopment flag is set in startup, here we copy it to then settings files when settings get updated.
                 newSettings.IsDevelopment = IsDevelopment;
             };
         }
 
-        private T GetValue<T>(string key, T defaultIfMissing)
-        {
-            //if (configValues.ContainsKey(key))
-            //{
-            //    var value = (T)configValues[key];
-            //    //I'm NOT liking where this is going. And I forgot exactly what situation I originally wrote this for. As Fuzzy and Dan say, "It's a future person problem."
-            //    if (typeof(T) == typeof(bool) || typeof(T) == typeof(int) || !value.IsDefault())
-            //    {
-            //        return value;
-            //    }
-            //}
-            return defaultIfMissing;
-        }
         #region AppSettings Accessors
 
         public bool IsVoatBranded
