@@ -40,10 +40,13 @@ namespace Voat.Common.Configuration
                     //we assume this is a primative direct value
                     var parsed = ArgumentParser.Parse(Value);
                     var value = parsed[0];
-                    if (value != null && value.GetType() != type)
-                    {
-                        throw new InvalidOperationException($"Declared type {type.Name} does not match value type {value.GetType().Name}");
-                    }
+                    //I do want to type check but nulls and System.Nullable`1[[System.Int32]] cause issues with type checking here.
+                    //Future People Please Fix.
+
+                    //if (value != null && value.GetType() != type)
+                    //{
+                    //    throw new InvalidOperationException($"Declared type {type.Name} does not match value type {value.GetType().Name}");
+                    //}
                     return (T)parsed[0];
                 }
 
