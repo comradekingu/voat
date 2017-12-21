@@ -7,9 +7,9 @@ using Voat.Common;
 using Voat.Configuration;
 using Voat.Domain.Command;
 using Voat.Domain.Models;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     

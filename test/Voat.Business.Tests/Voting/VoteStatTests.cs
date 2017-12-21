@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using Voat.Common;
 using Voat.Data.Models;
 using Voat.Domain.Command;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Voting.Models;
 
-namespace Voat.Tests.Voting
+namespace Voat.Business.Tests.Voting
 {
     [TestClass]
     [TestCategory("Vote")]

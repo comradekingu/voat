@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Voat.Common;
 using Voat.Configuration;
 using Voat.IO.Email;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Utility
+namespace Voat.Business.Tests.Utility
 {
     [TestClass]
     public class EmailTests : BaseUnitTest

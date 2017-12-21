@@ -30,10 +30,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Voat.Domain.Models;
 using Voat.Utilities;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Notifications;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class EventNotificationTests : BaseUnitTest

@@ -31,10 +31,10 @@ using Voat.Configuration;
 using Voat.Data.Models;
 using Voat.Domain.Command;
 using Voat.Domain.Query;
-using Voat.Tests.Infrastructure;
-using Voat.Tests.Repository;
+using Voat.Business.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
 
-namespace Voat.Tests.CommandTests
+namespace Voat.Business.Tests.CommandTests
 {
     [TestClass]
     public class SubmissionCommandTests : BaseUnitTest
@@ -220,7 +220,7 @@ namespace Voat.Tests.CommandTests
                 //Assert.AreEqual(s.Content, r.Response.Content);
                 //Assert.AreEqual(s.FormattedContent, r.Response.FormattedContent);
                 Assert.IsTrue(s.Content.StartsWith("Deleted by"));
-                Assert.AreEqual(s.FormattedContent, Utilities.Formatting.FormatMessage(s.Content));
+                Assert.AreEqual(s.FormattedContent, Voat.Utilities.Formatting.FormatMessage(s.Content));
             }
 
         }

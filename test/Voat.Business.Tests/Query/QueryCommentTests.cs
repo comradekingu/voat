@@ -31,9 +31,9 @@ using Voat.Utilities;
 using Voat.Domain.Query;
 using Voat.Domain.Models;
 using Voat.Common;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.QueryTests
+namespace Voat.Business.Tests.QueryTests
 {
     /// <summary>
     /// Summary description for QueryCommentTests

@@ -28,14 +28,14 @@ using System.Threading.Tasks;
 using Voat.Utilities;
 using System.IO;
 using System.Net;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.IO;
 using System.Net.Http;
 using Voat.Domain.Command;
 using Voat.Common.Models;
 using Voat.Configuration;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class GenerateThumbnailTests : BaseUnitTest

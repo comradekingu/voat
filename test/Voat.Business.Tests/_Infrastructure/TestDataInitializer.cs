@@ -35,12 +35,12 @@ using Voat.Common;
 using Voat.Data;
 using Voat.Data.Models;
 using Voat.Domain.Command;
-using Voat.Tests.Data;
+using Voat.Business.Tests.Data;
 using Voat.Utilities;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 
-namespace Voat.Tests.Infrastructure
+namespace Voat.Business.Tests.Infrastructure
 {
     public class TestDataInitializer 
     {

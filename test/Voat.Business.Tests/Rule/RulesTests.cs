@@ -25,11 +25,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Voat.Rules;
 using Voat.RulesEngine;
-using Voat.Tests.Infrastructure;
-using Voat.Tests.Repository;
+using Voat.Business.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
 using Voat.Utilities;
 
-namespace Voat.Tests.Rules
+namespace Voat.Business.Tests.Rules
 {
     [TestClass]
     public class RulesTests : BaseUnitTest

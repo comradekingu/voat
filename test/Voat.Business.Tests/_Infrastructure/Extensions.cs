@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Voat.Tests.Infrastructure
+namespace Voat.Business.Tests.Infrastructure
 {
     public static class TestExtensions
     {

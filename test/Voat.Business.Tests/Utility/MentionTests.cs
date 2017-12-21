@@ -34,10 +34,10 @@ using Voat.Common;
 using Voat.Data;
 using Voat.Data.Models;
 using Voat.Domain.Command;
-using Voat.Tests.Infrastructure;
-using Voat.Tests.Repository;
+using Voat.Business.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class MentionTests : BaseUnitTest

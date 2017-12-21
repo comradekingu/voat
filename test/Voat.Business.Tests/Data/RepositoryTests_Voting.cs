@@ -28,10 +28,10 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Voat.Domain.Command;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Utilities;
 
-namespace Voat.Tests.Repository
+namespace Voat.Business.Tests.Repository
 {
     [TestClass]
     public class RepositoryTests_Voting : BaseUnitTest

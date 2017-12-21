@@ -25,7 +25,7 @@
 using System.IO;
 using Voat.Data;
 
-namespace Voat.Tests.Infrastructure
+namespace Voat.Business.Tests.Infrastructure
 {
     public class TestEnvironmentSettings
     {

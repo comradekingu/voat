@@ -33,9 +33,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Voat.Caching;
 using Voat.Domain.Models;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Cache
+namespace Voat.Business.Tests.Cache
 {
    
 

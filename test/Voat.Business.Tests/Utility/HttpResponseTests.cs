@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Threading.Tasks;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Utilities;
 
-namespace Voat.Tests.Utility
+namespace Voat.Business.Tests.Utility
 {
     [TestClass]
     public class HttpResponseTests : BaseUnitTest

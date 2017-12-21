@@ -27,14 +27,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Voat.Common;
 using Voat.Configuration;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using System.Threading.Tasks;
 using Voat.IO;
 using Voat.Utilities;
 using System.Linq;
 using Voat.Common.Models;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class FileManagerTests : BaseUnitTest

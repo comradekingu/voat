@@ -30,7 +30,7 @@ using Voat.Common;
 using Voat.Domain.Command;
 using Voat.Domain.Models;
 
-namespace Voat.Tests.Infrastructure
+namespace Voat.Business.Tests.Infrastructure
 {
     public class TestHelper
     {

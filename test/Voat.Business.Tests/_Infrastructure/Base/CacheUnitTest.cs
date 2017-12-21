@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Voat.Caching;
 
-namespace Voat.Tests.Infrastructure
+namespace Voat.Business.Tests.Infrastructure
 {
     public abstract class CacheUnitTest : BaseUnitTest
     {

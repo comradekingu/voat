@@ -30,9 +30,9 @@ using System.Linq;
 using System.Reflection;
 using Voat.Common;
 using Voat.RulesEngine;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Rules
+namespace Voat.Business.Tests.Rules
 {
     [TestClass]
     public class RulesEngineTests : BaseUnitTest

@@ -24,7 +24,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     public class SubdomainForwardingTests
     {

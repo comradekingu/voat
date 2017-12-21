@@ -31,10 +31,10 @@ using System.Threading.Tasks;
 using Voat.Common;
 using Voat.Data.Models;
 using Voat.Domain.Command;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Utilities;
 
-namespace Voat.Tests.CommandTests
+namespace Voat.Business.Tests.CommandTests
 {
     [TestClass]
     public class VoteValueCommandTests : BaseUnitTest

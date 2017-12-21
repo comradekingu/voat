@@ -28,9 +28,9 @@ using System.Collections.Generic;
 using Voat.Common;
 using Voat.Data;
 using Voat.Domain.Models;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Data
+namespace Voat.Business.Tests.Data
 {
     public class CustomSearchOptions : SearchOptions
     {

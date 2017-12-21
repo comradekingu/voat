@@ -32,9 +32,9 @@ using System.Threading.Tasks;
 using Voat.Data;
 using Voat.Domain.Models;
 using Voat.Domain.Query;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.QueryTests
+namespace Voat.Business.Tests.QueryTests
 {
     [TestClass]
     public class QuerySubverseTests : BaseUnitTest

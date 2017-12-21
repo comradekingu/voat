@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using Voat.Common;
 using Voat.Domain.Command;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Voting;
 using Voat.Voting.Restrictions;
 
-namespace Voat.Tests.Voting
+namespace Voat.Business.Tests.Voting
 {
     [TestClass]
     public class RestrictionTests

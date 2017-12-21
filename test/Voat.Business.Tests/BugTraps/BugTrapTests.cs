@@ -31,11 +31,11 @@ using Voat.Models;
 using System.Threading;
 using Voat.Utilities;
 using Voat.Common;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Data.Models;
 using System.Linq;
 
-namespace Voat.Tests.BugTraps
+namespace Voat.Business.Tests.BugTraps
 {
     [TestClass]
     public class BugTrapTests : BaseUnitTest

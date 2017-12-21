@@ -31,9 +31,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Voat.Domain.Command;
 using Voat.Domain.Query;
 using Voat.Common;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.CommandTests
+namespace Voat.Business.Tests.CommandTests
 {
 
     [TestClass]

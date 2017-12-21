@@ -35,11 +35,11 @@ using Voat.Data.Models;
 using Voat.Logging;
 using Voat.Rules;
 using Voat.RulesEngine;
-using Voat.Tests;
-using Voat.Tests.Infrastructure;
-using Voat.Tests.Repository;
+using Voat.Business.Tests;
+using Voat.Business.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
 
-namespace Voat.Tests
+namespace Voat.Business.Tests
 {
 
     //[NUnit.Framework.SetUpFixture]

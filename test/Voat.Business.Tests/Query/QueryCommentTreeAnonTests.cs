@@ -31,11 +31,11 @@ using System.Threading.Tasks;
 using Voat.Data.Models;
 using Voat.Domain.Models;
 using Voat.Domain.Query;
-using Voat.Tests.CommandTests;
-using Voat.Tests.Infrastructure;
-using Voat.Tests.Repository;
+using Voat.Business.Tests.CommandTests;
+using Voat.Business.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
 
-namespace Voat.Tests.QueryTests
+namespace Voat.Business.Tests.QueryTests
 {
     [TestClass]
     public class QueryCommentTreeAnonTests : BaseCommandTest

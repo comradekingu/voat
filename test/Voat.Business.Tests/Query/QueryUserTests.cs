@@ -33,10 +33,10 @@ using Voat.Data;
 using Voat.Domain.Command;
 using Voat.Domain.Models;
 using Voat.Domain.Query;
-using Voat.Tests.Repository;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.QueryTests
+namespace Voat.Business.Tests.QueryTests
 {
     [TestClass]
     public class QueryUserTests : BaseUnitTest

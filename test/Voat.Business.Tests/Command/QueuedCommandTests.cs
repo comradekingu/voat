@@ -23,9 +23,9 @@
 #endregion LICENSE
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.CommandTests
+namespace Voat.Business.Tests.CommandTests
 {
     //public class CounterCommand : QueuedCommand<CommandResponse>
     //{

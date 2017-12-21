@@ -34,9 +34,9 @@ using Voat.Data;
 using Voat.Data.Models;
 using Voat.Domain.Command;
 using Voat.Domain.Models;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.CommandTests
+namespace Voat.Business.Tests.CommandTests
 {
     [TestClass]
     public class RuleReportTests : BaseUnitTest

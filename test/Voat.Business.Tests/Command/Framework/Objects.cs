@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Voat.Domain.Command;
 
-namespace Voat.Tests.CommandTests.Framework
+namespace Voat.Business.Tests.CommandTests.Framework
 {
     public class TestCommand : Command<CommandResponse>
     {

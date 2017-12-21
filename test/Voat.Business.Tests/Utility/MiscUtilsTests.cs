@@ -30,10 +30,10 @@ using System.Threading.Tasks;
 using Voat.Business.Utilities;
 using Voat.Common;
 using Voat.Common.Configuration;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Utilities;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class MiscUtilsTests : BaseUnitTest
@@ -263,11 +263,11 @@ namespace Voat.Tests.Utils
             Assert.AreEqual("sub", d.Name);
             Assert.AreEqual(null, d.OwnerName);
 
-            d = Domain.Models.DomainReference.Parse("sub" + Utilities.CONSTANTS.SET_SEPERATOR + "owner", Domain.Models.DomainType.Set);
+            d = Domain.Models.DomainReference.Parse("sub" + Voat.Utilities.CONSTANTS.SET_SEPERATOR + "owner", Domain.Models.DomainType.Set);
             Assert.AreEqual("sub", d.Name);
             Assert.AreEqual("owner", d.OwnerName);
 
-            d = Domain.Models.DomainReference.Parse("sub" + Utilities.CONSTANTS.SET_SEPERATOR + "owner_-1", Domain.Models.DomainType.Set);
+            d = Domain.Models.DomainReference.Parse("sub" + Voat.Utilities.CONSTANTS.SET_SEPERATOR + "owner_-1", Domain.Models.DomainType.Set);
             Assert.AreEqual("sub", d.Name);
             Assert.AreEqual("owner_-1", d.OwnerName);
 

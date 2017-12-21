@@ -27,12 +27,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Voat.Data.Models;
-using Voat.Tests.Repository;
+using Voat.Business.Tests.Repository;
 using Voat.Utilities;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Business.Utilities;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class AccountTests : BaseUnitTest

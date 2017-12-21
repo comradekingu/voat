@@ -27,10 +27,10 @@ using System;
 using System.Diagnostics;
 using Voat.Utilities;
 using Voat.Utilities.Components;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Configuration;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class ContentProcessorTests : BaseUnitTest

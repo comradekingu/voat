@@ -32,7 +32,7 @@ using Voat.Data;
 using Voat.Domain.Models;
 using Voat.Domain.Query;
 
-namespace Voat.Tests.QueryTests
+namespace Voat.Business.Tests.QueryTests
 {
     [TestClass]
     public class QueryDomainObjectsTests

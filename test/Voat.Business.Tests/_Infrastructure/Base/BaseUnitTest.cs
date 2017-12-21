@@ -32,7 +32,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Voat.Configuration;
 
-namespace Voat.Tests.Infrastructure
+namespace Voat.Business.Tests.Infrastructure
 {
     //Let me correct the record: I do not like what follows.
     [TestClass]

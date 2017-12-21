@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Voat.Data.Models;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Utilities;
 using Voat.Voting.Outcomes;
 
-namespace Voat.Tests.Voting
+namespace Voat.Business.Tests.Voting
 {
     [TestClass]
     public class OutcomeTests

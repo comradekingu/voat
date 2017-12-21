@@ -30,9 +30,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Voat.Caching;
 using Voat.Domain.Query;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.QueryTests
+namespace Voat.Business.Tests.QueryTests
 {
     [TestClass]
     public class MiscTests : BaseUnitTest

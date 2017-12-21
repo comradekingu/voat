@@ -24,7 +24,7 @@
 
 using Voat.RulesEngine;
 
-namespace Voat.Tests.Rules
+namespace Voat.Business.Tests.Rules
 {
     public class UnitTestRulesEngine : Voat.Rules.VoatRulesEngine
     {

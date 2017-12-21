@@ -25,11 +25,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Voat.Utilities;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace Voat.Tests.Utils
+namespace Voat.Business.Tests.Utils
 {
     [TestClass]
     public class UrlUtilityTests : BaseUnitTest

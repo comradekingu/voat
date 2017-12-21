@@ -33,9 +33,9 @@ using System.Linq;
 using Voat.Caching;
 using Voat.Common.Configuration;
 using Voat.Configuration;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Cache
+namespace Voat.Business.Tests.Cache
 {
     [TestClass]
     public class MiscTests : BaseUnitTest

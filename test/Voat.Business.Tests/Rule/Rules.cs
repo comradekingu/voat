@@ -25,7 +25,7 @@
 using Voat.Common;
 using Voat.RulesEngine;
 
-namespace Voat.Tests.Rules
+namespace Voat.Business.Tests.Rules
 {
     [RuleDiscovery(false)]
     public class TestDeniedRule : TestRule

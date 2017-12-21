@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Voat.Caching;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 
-namespace Voat.Tests.Cache
+namespace Voat.Business.Tests.Cache
 {
     [TestClass]
     public class MonitoredMemoryCacheTests : BaseUnitTest

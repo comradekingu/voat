@@ -35,10 +35,10 @@ using Voat.Data.Models;
 using Voat.Domain.Command;
 using Voat.Domain.Models;
 using Voat.Domain.Query;
-using Voat.Tests.Infrastructure;
-using Voat.Tests.Repository;
+using Voat.Business.Tests.Infrastructure;
+using Voat.Business.Tests.Repository;
 
-namespace Voat.Tests.CommandTests
+namespace Voat.Business.Tests.CommandTests
 {
 
     [TestClass]

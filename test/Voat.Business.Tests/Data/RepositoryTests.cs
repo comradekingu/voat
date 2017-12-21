@@ -33,10 +33,10 @@ using Voat.Data;
 using Voat.Data.Models;
 using Voat.Domain.Command;
 using Voat.Domain.Models;
-using Voat.Tests.Infrastructure;
+using Voat.Business.Tests.Infrastructure;
 using Voat.Utilities;
 
-namespace Voat.Tests.Repository
+namespace Voat.Business.Tests.Repository
 {
     [TestClass]
     public class RepositoryTests : BaseUnitTest
@@ -190,7 +190,7 @@ namespace Voat.Tests.Repository
             var user = TestHelper.SetPrincipal(null);
             using (var db = new Voat.Data.Repository(user))
             {
-                var s = await db.GetSubmissionsDapper(new DomainReference(DomainType.Subverse, SUBVERSES.Unit), new SearchOptions()).ConfigureAwait(Utilities.CONSTANTS.AWAIT_CAPTURE_CONTEXT);
+                var s = await db.GetSubmissionsDapper(new DomainReference(DomainType.Subverse, SUBVERSES.Unit), new SearchOptions()).ConfigureAwait(Voat.Utilities.CONSTANTS.AWAIT_CAPTURE_CONTEXT);
                 Assert.IsTrue(s.Any());
             }
         }
@@ -203,7 +203,7 @@ namespace Voat.Tests.Repository
             var user = TestHelper.SetPrincipal(null);
             using (var db = new Voat.Data.Repository(user))
             {
-                var anon_sub = await db.GetSubmissionsDapper(new DomainReference(DomainType.Subverse, SUBVERSES.Anon), SearchOptions.Default).ConfigureAwait(Utilities.CONSTANTS.AWAIT_CAPTURE_CONTEXT);
+                var anon_sub = await db.GetSubmissionsDapper(new DomainReference(DomainType.Subverse, SUBVERSES.Anon), SearchOptions.Default).ConfigureAwait(Voat.Utilities.CONSTANTS.AWAIT_CAPTURE_CONTEXT);
                 var first = anon_sub.OrderBy(x => x.CreationDate).First();
                 Assert.IsNotNull(first, "no anon submissions found");
                 Assert.AreEqual("First Anon Post", first.Title);
