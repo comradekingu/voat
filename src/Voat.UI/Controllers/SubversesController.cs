@@ -333,7 +333,7 @@ namespace Voat.Controllers
             //set span to day if not specified explicitly 
             if (options.Sort == Domain.Models.SortAlgorithm.Top && !Request.Query.ContainsKey("span"))
             {
-                options.Span = Domain.Models.SortSpan.Day;
+                options.Span = SortSpan.Day;
             }
             //reset count incase they try to change it with querystrings those sneaky snakes
             options.Count = 25;

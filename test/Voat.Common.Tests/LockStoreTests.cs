@@ -22,51 +22,49 @@
 
 #endregion LICENSE
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Voat.Common;
-using Voat.Tests.Infrastructure;
+using Xunit;
 
-namespace Voat.Tests.Utils
+namespace Voat.Common.Tests
 {
-    [TestClass]
-    public class LockStoreTests : BaseUnitTest
+    public class LockStoreTests 
     {
 
-        [TestMethod]
+        [Fact]
         public void TestLock()
         {
             var lockStore = new LockStore();
             var o1 = lockStore.GetLockObject("MyString");
             var o2 = lockStore.GetLockObject("MyString2");
-            Assert.AreNotEqual(o1, o2, "Should not have same lock object");
+            Assert.NotEqual(o1, o2);
             var o1_2 = lockStore.GetLockObject("MyString");
-            Assert.AreEqual(o1, o1_2, "Should have same lock object");
+            Assert.Equal(o1, o1_2);
         }
-        [TestMethod]
+        [Fact]
         public void TestLockSemaphoreSlim()
         {
             var lockStore = new SemaphoreSlimLockStore();
             var o1 = lockStore.GetLockObject("MyString");
             var o2 = lockStore.GetLockObject("MyString2");
-            Assert.AreNotEqual(o1, o2, "Should not have same lock object");
+            Assert.NotEqual(o1, o2);
             var o1_2 = lockStore.GetLockObject("MyString");
-            Assert.AreEqual(o1, o1_2, "Should have same lock object");
+            Assert.Equal(o1, o1_2);
         }
 
-        [TestMethod]
+        [Fact]
         public void TestLockNewLocks()
         {
             var lockStore = new LockStore(false);
             var o1 = lockStore.GetLockObject("MyString");
             var o2 = lockStore.GetLockObject("MyString2");
-            Assert.AreNotEqual(o1, o2, "Should not have same lock object");
+            Assert.NotEqual(o1, o2);
             var o1_2 = lockStore.GetLockObject("MyString");
-            Assert.AreNotEqual(o1, o1_2, "Should have same lock object");
+            Assert.NotEqual(o1, o1_2);
         }
     }
 }

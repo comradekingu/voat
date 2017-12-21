@@ -25,6 +25,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using Voat.Common;
 using Voat.Data;
 using Voat.Domain.Models;
 using Voat.Tests.Infrastructure;

@@ -26,6 +26,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: InternalsVisibleTo("Voat.Tests")]
+[assembly: InternalsVisibleTo("Voat.Business.Tests")]
 
 

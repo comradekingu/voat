@@ -34,6 +34,7 @@ using Voat.Domain.Models;
 using Voat.Domain.Query;
 using Voat.Tests.Repository;
 using Voat.Tests.Infrastructure;
+using Voat.Common;
 
 namespace Voat.Tests.QueryTests
 {

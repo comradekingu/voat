@@ -45,7 +45,7 @@ namespace Voat.Domain.Query.Statistics
             //Default options
             var options = new SearchOptions();
             options.EndDate = Repository.CurrentDate.ToStartOfDay();
-            options.Span = Domain.Models.SortSpan.Week;
+            options.Span = SortSpan.Week;
             options.Count = 5;
             this._options = options;
         }
