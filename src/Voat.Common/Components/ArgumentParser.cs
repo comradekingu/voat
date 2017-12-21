@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace Voat.Common.Configuration
@@ -110,8 +111,17 @@ namespace Voat.Common.Configuration
                                         }
                                         else
                                         {
-                                            var o = Activator.CreateInstance(type, new object[] { value });
-                                            objectList.Add(o);
+                                            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                                            {
+                                                var nullableConverter = new NullableConverter(type);
+                                                var nullable = nullableConverter.ConvertFrom(value);
+                                                objectList.Add(nullable);
+                                            }
+                                            else
+                                            {
+                                                var o = Activator.CreateInstance(type, new object[] { value });
+                                                objectList.Add(o);
+                                            }
                                         }
                                     }
                                 }

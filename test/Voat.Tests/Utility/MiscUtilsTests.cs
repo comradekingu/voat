@@ -326,6 +326,22 @@ namespace Voat.Tests.Utils
             Assert.AreEqual("1)One;2)Two;3)Three;", parsed[0]);
             Assert.AreEqual(4, parsed[1]);
 
+            argString = "[System.Nullable`1[[System.Int32]]](7)";
+            parsed = ArgumentParser.Parse(argString);
+            Assert.AreEqual(7, parsed[0]);
+
+            argString = "[System.Nullable`1[[System.Int32]]](null)";
+            parsed = ArgumentParser.Parse(argString);
+            Assert.AreEqual(null, parsed[0]);
+
+            argString = "[System.Nullable`1[[System.Int64]]](7)";
+            parsed = ArgumentParser.Parse(argString);
+            Assert.AreEqual((long)7, parsed[0]);
+
+            argString = "[System.Nullable`1[[System.Int64]]](null)";
+            parsed = ArgumentParser.Parse(argString);
+            Assert.AreEqual(null, parsed[0]);
+
         }
         [TestMethod]
         [TestCategory("Utility"), TestCategory("SpooferProofer")]
