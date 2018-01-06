@@ -354,4 +354,13 @@ namespace Voat.Domain.Models
         User = 1,
         Domain = 2
     }
+
+    [DatabaseMappedValue()]
+    public enum VoteStatus
+    {
+        Unpublished = 0,
+        Active = 1,
+        Closed = 2,
+        Deleted = 3
+    }
 }

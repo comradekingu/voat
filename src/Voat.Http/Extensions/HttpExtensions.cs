@@ -263,11 +263,12 @@ namespace Voat.Http
         public static void WriteJsonResponse(this HttpResponse response, object content, HttpStatusCode? statusCode = null, string contentType = "application/json", JsonSerializerSettings jsonSerializerSettings = null)
         {
             response.StatusCode = statusCode.HasValue ? (int)statusCode.Value : response.StatusCode;
+            response.ContentType = contentType;
             using (var writer = new StreamWriter(response.Body))
             {
                 writer.Write(content.ToJson(jsonSerializerSettings));
             }
-            response.ContentType = contentType;
+
         }
         public static void WriteJsonResponse(this HttpResponseMessage response, object content, HttpStatusCode? statusCode = null, string contentType = "application/json", JsonSerializerSettings jsonSerializerSettings = null)
         {

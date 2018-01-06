@@ -10,12 +10,24 @@ namespace Voat.Domain.Query
     public class QueryVote : CachedQuery<Domain.Models.Vote>
     {
         private int _id;
-        public QueryVote(int id) : base(new Caching.CachePolicy(TimeSpan.FromMinutes(60)))
+        public QueryVote(int id) : base(new Caching.CachePolicy(TimeSpan.FromDays(60)))
         {
             _id = id;
         }
-        protected override string FullCacheKey => Caching.CachingKey.Vote(_id);
-        public override string CacheKey => Caching.CachingKey.Vote(_id);
+        protected override string FullCacheKey => "Vote:Dictionary";
+        public override string CacheKey => "Vote:Dictionary";
+
+        public override async Task<Vote> ExecuteAsync()
+        {
+            var domainVote = CacheHandler.DictionaryRetrieve<int, Voat.Domain.Models.Vote>("CacheKey", _id);
+            if (domainVote == null)
+            {
+                domainVote = await GetData();
+                CacheHandler.DictionaryReplace("CacheKey", domainVote.ID, domainVote);
+            }
+
+            return domainVote;
+        }
 
         protected override async Task<Vote> GetData()
         {

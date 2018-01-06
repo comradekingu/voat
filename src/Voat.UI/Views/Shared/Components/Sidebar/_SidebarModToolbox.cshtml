@@ -52,7 +52,7 @@
                                 <a href="/v/@Model.Name/about/flair/">flair settings</a>
                             </li>
                         }
-                        @if (ModeratorPermission.HasPermission(User, Model.Name, Voat.Domain.Models.ModeratorAction.InviteMods))
+                        @if (ModeratorPermission.HasPermission(User, Model.Name, Voat.Domain.Models.ModeratorAction.InviteModerator))
                         {
                             <li>
                                 <a href="/v/@Model.Name/about/moderators/">subverse moderators</a>

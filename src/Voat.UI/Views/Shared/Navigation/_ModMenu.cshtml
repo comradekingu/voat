@@ -49,7 +49,7 @@
                 <a href="/v/@subverseName/about/flair/">Flair</a>
             </li>
         }
-        @if (ModeratorPermission.HasPermission(User, subverseName, Voat.Domain.Models.ModeratorAction.InviteMods))
+        @if (ModeratorPermission.HasPermission(User, subverseName, Voat.Domain.Models.ModeratorAction.InviteModerator))
         {
             <li class='@(url.Contains("about/moderators") ? "selected" : "disabled")'>
                 <a href="/v/@subverseName/about/moderators/">Mods</a>

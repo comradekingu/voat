@@ -118,7 +118,7 @@ namespace Voat.Domain.Models
         [MaxLength(10000, ErrorMessage = "Content is limited to 10,000 characters")]
         public string Content { get; set; }
         public string FormattedContent { get; set; }
-        public int SubmissionID { get; set; }
+        public int? SubmissionID { get; set; }
         [Required]
         public string Subverse { get; set; }
         public DateTime StartDate { get; set; }
@@ -126,6 +126,8 @@ namespace Voat.Domain.Models
         public bool DisplayStatistics { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreationDate { get; set; }
+
+        public VoteStatus Status { get; set; }
 
         [PerformValidation]
         public List<VoteOption> Options { get; set; } = new List<VoteOption>();
@@ -158,6 +160,61 @@ namespace Voat.Domain.Models
             }
 
             return errors;
+        }
+
+        public string ToMarkdown()
+        {
+            var sb = new StringBuilder();
+            //Append Main Content
+            sb.Append(Content);
+
+            Options.ForEachIndex((x, index) =>
+            {
+
+                sb.AppendLine($"* {index + 1}. {x.Title}");
+                if (!String.IsNullOrEmpty(x.Content))
+                {
+                    sb.AppendLine();
+                    sb.AppendLine();
+                    sb.AppendLine($"> {x.Content}");
+
+                    x.Outcomes.ForEachIndex(
+                        (x2, index2) => {
+                            sb.AppendLine($"* {index + 1}. {x2.ToDescription()}");
+                        },
+                        () => {
+                            sb.AppendLine($"### Outcomes");
+                            sb.AppendLine();
+                            sb.AppendLine();
+                        }
+                        );
+
+                }
+
+            },
+            () => {
+                sb.AppendLine($"## Options");
+                sb.AppendLine();
+                sb.AppendLine();
+            }
+            );
+
+            Restrictions.ForEachIndex((x, index) => {
+                sb.AppendLine($"* {index + 1}. {x.ToDescription()}");
+            },
+            () => {
+                sb.AppendLine($"## Restrictions");
+                sb.AppendLine();
+                sb.AppendLine();
+            });
+
+            return sb.ToString();
+        }
+
+        public void SyncSubmission(Submission submission)
+        {
+            submission.Title = Title;
+            submission.Content = ToMarkdown();
         }
     }
     public class VoteOption

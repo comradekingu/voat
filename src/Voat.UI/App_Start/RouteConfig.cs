@@ -379,6 +379,13 @@ namespace Voat
             );
 
             routes.MapRoute(
+              name: "UserVotes",
+              template: "{pathPrefix}/{userName}/votes",
+              defaults: new { controller = "User", action = "Votes" },
+              constraints: new { pathPrefix = "user|u" }
+            );
+
+            routes.MapRoute(
                name: "Block",
                template: "block/{blockType}",
                defaults: new { controller = "User", action = "Block" },

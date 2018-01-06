@@ -60,7 +60,7 @@ namespace Voat.Domain.Models
         private string _title = null;
         private string _url = null;
         private string _content = null;
-
+        private SubmissionType? _type;
         /// <summary>
         /// Optional. A value containing the content/text for a submission. Editable for self-posts only.
         /// </summary>
@@ -102,11 +102,22 @@ namespace Voat.Domain.Models
         }
 
         [JsonIgnore]
-        public SubmissionType Type
+        public virtual SubmissionType Type
         {
             get
             {
-                return String.IsNullOrEmpty(Url) ? SubmissionType.Text : SubmissionType.Link;
+                if (_type == null)
+                {
+                    return String.IsNullOrEmpty(Url) ? SubmissionType.Text : SubmissionType.Link;
+                }
+                else
+                {
+                    return _type.Value;
+                }
+            }
+            internal set
+            {
+                _type = value;
             }
         }
 

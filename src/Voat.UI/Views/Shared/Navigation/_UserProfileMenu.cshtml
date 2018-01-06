@@ -37,6 +37,7 @@
         if (User.Identity.Name == Model.Name)
         {
             <li class='@(url.Contains("/saved") ? "selected" : "disabled")'><a href="~/user/@Model.Name/saved">Saved</a></li>
+            <li class='@(url.Contains("/votes") ? "selected" : "disabled")'><a href="~/user/@Model.Name/votes">Votes</a></li>
         }
     }
 </ul>

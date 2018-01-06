@@ -653,7 +653,7 @@ namespace Voat.Caching
         /// <param name="cacheTime">The timespan in which to update or remove item from cache</param>
         /// <param name="refetchLimit">Value indicating refresh behavior. -1: Do not refresh, 0: Unlimited refresh (use with caution), x > 0: Number of times to refresh cached data</param>
         /// <returns></returns>
-        public async Task<T> Register<T>(string cacheKey, Func<Task<T>> getData, TimeSpan cacheTime, int refetchLimit = -1)
+        public async Task<T> RegisterAsync<T>(string cacheKey, Func<Task<T>> getData, TimeSpan cacheTime, int refetchLimit = -1)
         {
             cacheKey = StandardizeCacheKey(cacheKey);
 

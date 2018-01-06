@@ -326,10 +326,11 @@ namespace Voat.Common
             }
         }
 
-        public static void ForEachIndex<T>(this IEnumerable<T> items, Action<T,int> action)
+        public static void ForEachIndex<T>(this IEnumerable<T> items, Action<T, int> action, Action hasData = null)
         {
             if (items != null && items.Any())
             {
+                hasData?.Invoke();
                 int index = 0;
                 foreach (var item in items)
                 {
@@ -338,10 +339,11 @@ namespace Voat.Common
                 }
             }
         }
-        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+        public static void ForEach<T>(this IEnumerable<T> items, Action<T> action, Action hasData = null)
         {
             if (items != null && items.Any())
             {
+                hasData?.Invoke();
                 foreach (var item in items)
                 {
                     action(item);

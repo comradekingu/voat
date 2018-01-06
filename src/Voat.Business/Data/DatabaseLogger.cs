@@ -8,6 +8,7 @@ using Voat.Configuration;
 using Voat.Data;
 using Voat.Data.Models;
 using Voat.Logging;
+using Voat.Utilities;
 using Voat.Utilities.Components;
 
 namespace Voat.Data
@@ -57,7 +58,8 @@ namespace Voat.Data
         protected override async Task ProcessBatch(IEnumerable<ILogInformation> batch)
         {
             //Logging to EventLog
-            using (var repo = new Repository()){
+            using (var repo = new Repository(null, new VoatDataContext(CONSTANTS.CONNECTION_LOG)))
+            {
                 await repo.Log(Map(batch));
             }
         }

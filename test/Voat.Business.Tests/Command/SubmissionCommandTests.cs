@@ -51,6 +51,7 @@ namespace Voat.Business.Tests.CommandTests
             var r = cmd.Execute().Result;
 
             VoatAssert.IsValid(r);
+
             Assert.IsNotNull(r.Response, "Expecting a non null response");
             Assert.AreNotEqual(0, r.Response.ID);
             Assert.AreEqual(userName, r.Response.UserName);

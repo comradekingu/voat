@@ -11,7 +11,8 @@ namespace Voat.Data.Models
         public string Content { get; set; }
         public string FormattedContent { get; set; }
         public string Subverse { get; set; }
-        public int SubmissionID { get; set; }
+        public int Status { get; set; } = 0;
+        public int? SubmissionID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime? LastEditDate { get; set; }

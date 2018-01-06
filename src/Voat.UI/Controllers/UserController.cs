@@ -216,7 +216,40 @@ namespace Voat.Controllers
 
             return View(paginatedUserSubmissionsAndComments);
         }
+        //TODO: Rewrite this
+        public async Task<ActionResult> Votes(string userName, int? page = null)
+        {
+            if (page.HasValue && page.Value < 0)
+            {
+                return ErrorView(ErrorViewModel.GetErrorViewModel(ErrorType.NotFound));
+            }
 
+            var originalUserName = UserHelper.OriginalUsername(userName);
+            if (String.IsNullOrEmpty(originalUserName))
+            {
+                return ErrorView(ErrorViewModel.GetErrorViewModel(ErrorType.NotFound));
+            }
+            if (!User.Identity.IsAuthenticated || (User.Identity.IsAuthenticated && !User.Identity.Name.IsEqual(originalUserName)))
+            {
+                return RedirectToAction("Overview");
+            }
+
+            var q = new QueryUserVotes(userName, new SearchOptions() { Page = page ?? 0 }).SetUserContext(User);
+            var votes = await q.ExecuteAsync();
+            
+
+            var paginatedUserSubmissionsAndComments = new PaginatedList<Domain.Models.Vote>(votes, page ?? 0, PAGE_SIZE);
+
+            ViewBag.NavigationViewModel = new NavigationViewModel()
+            {
+                MenuType = MenuType.UserProfile,
+                Name = originalUserName,
+                BasePath = "/user/" + originalUserName,
+                Description = originalUserName + "'s Saved",
+            };
+
+            return View(paginatedUserSubmissionsAndComments);
+        }
         #region ACCOUNT BASED
         //This code really belongs in an Account controller but didn't want to add it to the existing Account controller
 

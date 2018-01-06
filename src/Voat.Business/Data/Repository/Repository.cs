@@ -1122,7 +1122,7 @@ namespace Voat.Data
                             name = ToCorrectSubverseCasing(name);
                             if (String.IsNullOrEmpty(name))
                             {
-                                throw new VoatNotFoundException("Subverse '{0}' not found.", name);
+                                throw new VoatNotFoundException("Subverse '{0}' not found.", domainReference.Name);
                             }
 
                             ////Controller Logic:
@@ -1547,13 +1547,6 @@ namespace Voat.Data
                 return MapRuleOutCome<Domain.Models.Submission>(outcome, null);
             }
 
-            //Save submission
-            Models.Submission newSubmission = new Models.Submission();
-            newSubmission.UpCount = 1; //https://voat.co/v/PreviewAPI/comments/877596
-            newSubmission.UserName = User.Identity.Name;
-            newSubmission.CreationDate = CurrentDate;
-            newSubmission.Subverse = subverseObject.Name;
-
             //TODO: Should be in rule object
             //If IsAnonymized is NULL, this means subverse allows users to submit either anon or non-anon content
             if (subverseObject.IsAnonymized.HasValue)
@@ -1563,6 +1556,29 @@ namespace Voat.Data
                 {
                     return MapRuleOutCome<Domain.Models.Submission>(new RuleOutcome(RuleResult.Denied, "Anon Submission Rule", "9.1", "Subverse does not allow anon content"), null);
                 }
+            }
+
+            Models.Submission newSubmission = await CreateSubmission(userSubmission, subverseObject);
+
+            await NotificationManager.OnSubmissionPosted(User, newSubmission);
+
+            return CommandResponse.Successful(newSubmission.Map());
+        }
+
+        private async Task<Models.Submission> CreateSubmission(UserSubmission userSubmission, Subverse subverseObject = null)
+        {
+            subverseObject = subverseObject ?? _db.Subverse.Where(x => x.Name.ToLower() == userSubmission.Subverse.ToLower()).FirstOrDefault();
+
+            //Save submission
+            Models.Submission newSubmission = new Models.Submission();
+            newSubmission.UpCount = 1; //https://voat.co/v/PreviewAPI/comments/877596
+            newSubmission.UserName = User.Identity.Name;
+            newSubmission.CreationDate = CurrentDate;
+            newSubmission.Subverse = subverseObject.Name;
+
+            //If IsAnonymized is NULL, this means subverse allows users to submit either anon or non-anon content
+            if (subverseObject.IsAnonymized.HasValue)
+            {
                 newSubmission.IsAnonymized = subverseObject.IsAnonymized.Value;
             }
             else
@@ -1580,45 +1596,49 @@ namespace Voat.Data
             //1: Text, 2: Link
             newSubmission.Type = (int)userSubmission.Type;
 
-            if (userSubmission.Type == SubmissionType.Text)
+            switch (userSubmission.Type)
             {
-                //Removing this stage of processing from content filters
-                //if (ContentProcessor.Instance.HasStage(ProcessingStage.InboundPreSave))
-                //{
-                //    userSubmission.Content = ContentProcessor.Instance.Process(userSubmission.Content, ProcessingStage.InboundPreSave, newSubmission);
-                //}
+                case SubmissionType.Text:
+                    //Removing this stage of processing from content filters
+                    //if (ContentProcessor.Instance.HasStage(ProcessingStage.InboundPreSave))
+                    //{
+                    //    userSubmission.Content = ContentProcessor.Instance.Process(userSubmission.Content, ProcessingStage.InboundPreSave, newSubmission);
+                    //}
 
-                newSubmission.Title = userSubmission.Title;
-                newSubmission.Content = userSubmission.Content;
-                newSubmission.FormattedContent = Formatting.FormatMessage(userSubmission.Content, true);
-            }
-            else
-            {
-                newSubmission.Title = userSubmission.Title;
-                newSubmission.Url = userSubmission.Url;
-                newSubmission.DomainReversed = UrlUtility.GetDomainFromUri(userSubmission.Url).ReverseSplit().ToNormalized(Normalization.Lower);
+                    newSubmission.Title = userSubmission.Title;
+                    newSubmission.Content = userSubmission.Content;
+                    newSubmission.FormattedContent = Formatting.FormatMessage(userSubmission.Content, true);
+                    break;
+                case SubmissionType.Link:
+                    newSubmission.Title = userSubmission.Title;
+                    newSubmission.Url = userSubmission.Url;
+                    newSubmission.DomainReversed = UrlUtility.GetDomainFromUri(userSubmission.Url).ReverseSplit().ToNormalized(Normalization.Lower);
 
-                //TODO: This code needs to execute outside of the repository on it's own thread... Move this Future People!
-                var generateThumbnail = VoatSettings.Instance.ThumbnailsEnabled && subverseObject.IsThumbnailEnabled;
+                    //TODO: This code needs to execute outside of the repository on it's own thread... Move this Future People!
+                    var generateThumbnail = VoatSettings.Instance.ThumbnailsEnabled && subverseObject.IsThumbnailEnabled;
 
-                EventLogger.Instance.Log(new LogInformation()
-                {
-                    Type = LogType.Debug,
-                    Category = "Thumbnail Diag",
-                    Message = "Thumbs Enabled",
-                    Data = new { thumbsEnabled = VoatSettings.Instance.ThumbnailsEnabled, subThumbsEnabled = subverseObject.IsThumbnailEnabled },
-                    Origin = "Thumbnail"
-                });
-
-                if (generateThumbnail)
-                {
-                    // try to generate and assign a thumbnail to submission model
-                    var result = await ThumbGenerator.GenerateThumbnail(userSubmission.Url).ConfigureAwait(CONSTANTS.AWAIT_CAPTURE_CONTEXT);
-                    if (result.Success)
+                    EventLogger.Instance.Log(new LogInformation()
                     {
-                        newSubmission.Thumbnail = result.Response;
+                        Type = LogType.Debug,
+                        Category = "Thumbnail Diag",
+                        Message = "Thumbs Enabled",
+                        Data = new { thumbsEnabled = VoatSettings.Instance.ThumbnailsEnabled, subThumbsEnabled = subverseObject.IsThumbnailEnabled },
+                        Origin = "Thumbnail"
+                    });
+
+                    if (generateThumbnail)
+                    {
+                        // try to generate and assign a thumbnail to submission model
+                        var result = await ThumbGenerator.GenerateThumbnail(userSubmission.Url).ConfigureAwait(CONSTANTS.AWAIT_CAPTURE_CONTEXT);
+                        if (result.Success)
+                        {
+                            newSubmission.Thumbnail = result.Response;
+                        }
                     }
-                }
+                    break;
+                default:
+                    throw new NotSupportedException($"Submission type {userSubmission.Type} not supported");
+                    break;
             }
 
             //Add User Vote to Submission
@@ -1633,17 +1653,7 @@ namespace Voat.Data
             _db.Submission.Add(newSubmission);
 
             await _db.SaveChangesAsync().ConfigureAwait(CONSTANTS.AWAIT_CAPTURE_CONTEXT);
-
-            //Removing this stage of processing from content filters
-            //This sends notifications by parsing content
-            //if (ContentProcessor.Instance.HasStage(ProcessingStage.InboundPostSave))
-            //{
-            //    ContentProcessor.Instance.Process(String.Concat(newSubmission.Title, " ", newSubmission.Content), ProcessingStage.InboundPostSave, newSubmission);
-            //}
-
-            await NotificationManager.OnSubmissionPosted(User, newSubmission);
-
-            return CommandResponse.Successful(newSubmission.Map());
+            return newSubmission;
         }
 
         [Authorize]

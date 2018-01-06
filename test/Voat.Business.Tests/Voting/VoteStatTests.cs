@@ -9,6 +9,8 @@ using Voat.Data.Models;
 using Voat.Domain.Command;
 using Voat.Business.Tests.Infrastructure;
 using Voat.Voting.Models;
+using Voat.Voting.Outcomes;
+using Voat.Voting.Restrictions;
 
 namespace Voat.Business.Tests.Voting
 {
@@ -39,9 +41,20 @@ namespace Voat.Business.Tests.Voting
                 Content = "We often wonder if you are willing to do it, so are you?",
                 Subverse = "unit",
                 Options = new List<Domain.Models.VoteOption>() {
-                    new Domain.Models.VoteOption(){ Title = "Yes", Content = "This is most likely a yes" },
-                    new Domain.Models.VoteOption(){ Title = "No", Content = "This is most likely a no" },
+                    new Domain.Models.VoteOption(){ Title = "Yes", Content = "This is most likely a yes",
+                        Outcomes = new List<Voat.Voting.Outcomes.VoteOutcome>(){
+                            new AddModeratorOutcome() { UserName = USERNAMES.User500CCP, Level = Domain.Models.ModeratorLevel.Moderator, Subverse = "unit" }
+                        }
+                    },
+                    new Domain.Models.VoteOption(){ Title = "No", Content = "This is most likely a no",
+                        Outcomes = new List<Voat.Voting.Outcomes.VoteOutcome>(){
+                            new RemoveModeratorOutcome() { UserName = USERNAMES.Unit, Subverse = "unit" }
+                        }
+                    },
                     new Domain.Models.VoteOption(){ Title = "Maybe", Content = "This is most likely a maybe" }
+                },
+                Restrictions = new List<Voat.Voting.Restrictions.VoteRestriction>() {
+                    new ContributionPointRestriction() { MinimumCount = 10, Duration = TimeSpan.FromDays(90), ContentType = ContentTypeRestriction.Any }
                 },
                 DisplayStatistics = true
             }).SetUserContext(user);

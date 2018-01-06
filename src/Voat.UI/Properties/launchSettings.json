@@ -13,7 +13,8 @@
       "launchBrowser": true,
       "launchUrl": "v/news",
       "environmentVariables": {
-        "X_ASPNETCORE_ENVIRONMENT": "Development"
+        "X_ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Voat.UI": {

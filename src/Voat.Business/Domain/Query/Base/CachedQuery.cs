@@ -141,7 +141,7 @@ namespace Voat.Domain.Query
                     //}
 
                     //Async 
-                    result = await CacheHandler.Register<T>(FullCacheKey.ToLower(), new Func<Task<T>>(GetFreshData), CachingPolicy.Duration, CachingPolicy.RefetchLimit);
+                    result = await CacheHandler.RegisterAsync<T>(FullCacheKey.ToLower(), new Func<Task<T>>(GetFreshData), CachingPolicy.Duration, CachingPolicy.RefetchLimit);
                 }
             }
             else

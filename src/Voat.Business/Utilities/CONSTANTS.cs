@@ -31,9 +31,12 @@ namespace Voat.Utilities
         public const string ADMIN_AREA = "6310C05A-E33A-4DD5-BC3B-15C20EF02C9C";
 
         public const string SYSTEM_USER_NAME = "Voat";
+
         public const string CONNECTION_USERS = "voatUsers";
         public const string CONNECTION_LIVE = "ReadWrite";
         public const string CONNECTION_READONLY = "ReadOnly";
+        public const string CONNECTION_LOG = "Log";
+
         public const int DEFAULT_GUEST_PAGE_CACHE_MINUTES = 3;
         public const string USER_NAME_REGEX = @"ted\.shield|o\.o|bill\.lee|casualwhoaversereader|anothercuriousredditor|[a-zA-Z0-9]{1}([a-zA-Z0-9-_]{1,19})?"; //Backwords compat for these three users with dots in their name. See, we love them.
         public const string SUBVERSE_REGEX = "[a-zA-Z0-9]{1,20}";

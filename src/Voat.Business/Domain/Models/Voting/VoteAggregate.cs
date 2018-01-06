@@ -56,9 +56,9 @@ namespace Voat.Domain.Models
 
 
 
-                if (aggregate.Vote.SubmissionID > 0)
+                if (aggregate.Vote.SubmissionID.HasValue)
                 {
-                    var sub = new QuerySubmission(aggregate.Vote.SubmissionID);
+                    var sub = new QuerySubmission(aggregate.Vote.SubmissionID.Value);
                     aggregate.Submission = await sub.ExecuteAsync();
                 }
             }

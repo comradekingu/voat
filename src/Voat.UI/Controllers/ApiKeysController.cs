@@ -70,9 +70,7 @@ namespace Voat.Controllers
             {
                 return RedirectToAction("Index");
             }
-
         }
-
 
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
@@ -82,7 +80,7 @@ namespace Voat.Controllers
             var result = await cmd.Execute();
             return RedirectToAction("Index");
         }
-
+        
         public ActionResult Create()
         {
             return View("Edit");
@@ -103,6 +101,5 @@ namespace Voat.Controllers
             }
             return View("Edit");
         }
-
     }
 }

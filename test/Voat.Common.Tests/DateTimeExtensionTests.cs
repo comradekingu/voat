@@ -300,7 +300,10 @@ namespace Voat.Common.Tests
             var processed = current.ToStartOfWeek();
 
             Assert.Equal(DayOfWeek.Sunday, calendar.GetDayOfWeek(processed));
-            Assert.True(calendar.GetDayOfYear(current) >= calendar.GetDayOfYear(processed));
+            Assert.True(calendar.GetDayOfYear(current) >= calendar.GetDayOfYear(processed) ||
+                (
+                    current.Year > processed.Year && current.Month == 1 && current.DayOfYear <= 6 //Add exclusion for new year
+                ));
         }
 
         [Fact]

@@ -120,7 +120,6 @@ namespace Voat.UI.Controllers
                 ////Reinsert Cache
                 //cache.Replace($"VoteCreate:{User.Identity.Name}", domainModel);
 
-
                 var valResult = Voat.Validation.ValidationHandler.Validate(domainModel);
                 if (valResult != null)
                 {

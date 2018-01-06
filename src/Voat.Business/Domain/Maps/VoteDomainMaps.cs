@@ -23,6 +23,7 @@ namespace Voat.Domain
                 vote.Content = entity.Content;
                 vote.FormattedContent = entity.FormattedContent;
                 vote.Subverse = entity.Subverse;
+                vote.Status = (VoteStatus)entity.Status;
                 vote.SubmissionID = entity.SubmissionID;
                 vote.StartDate = entity.StartDate;
                 vote.DisplayStatistics = entity.DisplayStatistics;
@@ -68,6 +69,7 @@ namespace Voat.Domain
             vote.FormattedContent = entity.FormattedContent;
             vote.DisplayStatistics = entity.DisplayStatistics;
             vote.Subverse = entity.Subverse;
+            vote.Status = (int)entity.Status;
             vote.SubmissionID = entity.SubmissionID;
 
             vote.VoteOptions = new List<Data.Models.VoteOption>();

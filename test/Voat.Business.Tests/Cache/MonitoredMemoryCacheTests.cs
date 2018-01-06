@@ -36,41 +36,41 @@ namespace Voat.Business.Tests.Cache
             });
 
             Task.WaitAll(new[] {
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10)
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10)
             });
 
             await Task.Delay(TimeSpan.FromSeconds(30));
             Task.WaitAll(new[] {
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
                 Task.Run(() => memCache.Remove(key)),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
                 Task.Run(() => memCache.Remove(key)),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10)
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10)
             });
 
             await Task.Delay(TimeSpan.FromSeconds(30));
             Task.WaitAll(new[] {
                 Task.Run(() => memCache.Replace(key, getData())),
                 Task.Run(() => memCache.Remove(key)),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
                 Task.Run(() => memCache.Remove(key)),
-                memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10),
+                memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10),
                 Task.Run(() => memCache.Replace(key, getData())),
             });
 
-            await memCache.Register(key, getData, TimeSpan.FromSeconds(10), 10);
+            await memCache.RegisterAsync(key, getData, TimeSpan.FromSeconds(10), 10);
             await Task.Delay(TimeSpan.FromSeconds(30));
             await Task.Delay(TimeSpan.FromSeconds(30));
             await Task.Delay(TimeSpan.FromSeconds(30));

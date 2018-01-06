@@ -247,7 +247,11 @@ namespace Voat.Caching
         }
         public static string Votes(string subverse, SearchOptions options)
         {
-            return $"Vote:List:{subverse}:page{options.Page}:{options.Sort.ToString()}:{options.Phrase}";
+            return $"Vote:Subverse:{subverse}:page{options.Page}:{options.Sort.ToString()}:{options.Phrase}";
+        }
+        public static string UserVotes(string userName, SearchOptions options)
+        {
+            return $"Vote:User:{userName}:page{options.Page}:{options.Sort.ToString()}:{options.Phrase}";
         }
         public static string VoteStatistics(int id)
         {
