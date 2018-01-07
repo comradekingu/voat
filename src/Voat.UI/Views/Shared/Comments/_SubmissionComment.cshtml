@@ -23,7 +23,7 @@
 @model NestedComment
 
 @{
-    CommentSortAlgorithm sortOrder = ViewBag.SortOrder ?? CommentSortAlgorithm.Top;
+    CommentSortAlgorithm sortOrder = ViewBag.Sort ?? CommentSortAlgorithm.Top;
     bool parentIsHidden = ViewBag.ParentIsHidden ?? false;
     bool childTohiddenParent = ViewBag.ChildToHiddenParent ?? false;
     string collapsedComment = "";

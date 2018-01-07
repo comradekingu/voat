@@ -35,6 +35,7 @@
             {
                 continue;
             }
+            ViewBag.Sort = Model.Sort;
             @Html.Partial("~/Views/Shared/Comments/_SubmissionComment.cshtml", comment, ViewData)
         }
         if (Model.HasMore)
