@@ -225,6 +225,7 @@
         {
             foreach (var childComment in Model.Children.Comments)
             {
+                ViewBag.ParentIsHidden = Model.IsCollapsed;
                 @Html.Partial("~/Views/Shared/Comments/_SubmissionComment.cshtml", childComment, ViewData)
             }
             remaining = Model.Children.TotalCount - Model.Children.SegmentCount;
