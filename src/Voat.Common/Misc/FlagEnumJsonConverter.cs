@@ -20,7 +20,7 @@ namespace Voat.Common
             {
                 values.Add(value);
             } 
-            var result = Enum.Parse(objectType, String.Join(',', values.ToArray()));
+            var result = Enum.Parse(objectType, String.Join(",", values.ToArray()));
 
             return result;
         }
@@ -28,7 +28,7 @@ namespace Voat.Common
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var valueString = value.ToString();
-            var values = valueString.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var values = valueString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             writer.WriteStartArray();
             foreach (string enumValue in values)
