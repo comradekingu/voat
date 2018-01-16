@@ -35,9 +35,6 @@ namespace Voat.Business.Tests.Utils
     [TestClass]
     public class ContentProcessorTests : BaseUnitTest
     {
-
-      
-
         [TestMethod]
         [TestCategory("Content Processor")]
         [TestCategory("Formatting")]
@@ -448,20 +445,20 @@ namespace Voat.Business.Tests.Utils
         public void SantizeMaliciousMarkdown()
         {
             string input = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
-            string expected = ">";
+            string expected = ">>>>";
 
-            string actual = Formatting.SanitizeInput(input);
+            string actual = ContentProcessor.Instance.Process(input, ProcessingStage.Outbound, null);
             Assert.AreEqual(expected, actual);
 
             input = "> > > > > > > > ";
-            actual = Formatting.SanitizeInput(input);
+            actual = ContentProcessor.Instance.Process(input, ProcessingStage.Outbound, null);
             Assert.AreEqual(expected, actual);
 
             input = @"Hello 
                     > > > > > > > > Hello";
-            expected = @"Hello 
-                    >Hello";
-            actual = Formatting.SanitizeInput(input);
+            expected = String.Format(@"Hello 
+                    {0}Hello", expected);
+            actual = ContentProcessor.Instance.Process(input, ProcessingStage.Outbound, null);
             Assert.AreEqual(expected, actual);
         }
 
@@ -478,7 +475,7 @@ namespace Voat.Business.Tests.Utils
 ~~~~~";
             string expected = input;
 
-            string actual = Formatting.SanitizeInput(input);
+            string actual = ContentProcessor.Instance.Process(input, ProcessingStage.Outbound, null);
             Assert.AreEqual(expected, actual);
 
         }

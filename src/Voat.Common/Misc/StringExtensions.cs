@@ -149,12 +149,15 @@ namespace Voat.Common
             return stringToTest.Any(c => (c > maxAnsiCode || c < minAnsiCode));
         }
 
-        public static string StripWhiteSpace(this string stringToClean)
+        public static string StripWhiteSpace(this string stringToClean, int minLength = 2)
         {
+
+            minLength.EnsureRange(1, int.MaxValue);
+
             var scrubbed = stringToClean;
             if (!String.IsNullOrEmpty(scrubbed))
             {
-                scrubbed = Regex.Replace(scrubbed, @"\s{2,}", " ").Trim();
+                scrubbed = Regex.Replace(scrubbed, String.Concat(@"\s{", minLength, ",}"), minLength == 1 ? "" : " ").Trim();
             }
             return scrubbed;
         }

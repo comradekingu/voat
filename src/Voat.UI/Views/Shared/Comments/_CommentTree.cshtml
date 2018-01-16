@@ -66,14 +66,13 @@
                                 <a href="javascript:getCommentTree(@ViewBag.Submission.ID, '@sort.ToString()');" class="bylink" rel="nofollow">@sort.ToString()</a>
                             }
                         }
-                       
                     </span>
                 </div>
             </div>
             <div class="spacer"></div>
         </div>
         <div class="menuarea">
-            <h2><span id="comment-sort-label" class="label label-default">Sort: @Model.Sort.ToString()</span></h2>
+            <h2><span id="comment-sort-label" class="label label-default">Sort: <a href="javascript:getCommentTree(@ViewBag.Submission.ID, '@Model.Sort.ToString()');" class="bylink" rel="nofollow">@Model.Sort.ToString()</a></span></h2>
         </div>
     }
    

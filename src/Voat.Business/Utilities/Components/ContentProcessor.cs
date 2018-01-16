@@ -33,9 +33,6 @@ namespace Voat.Utilities.Components
         private List<ContentFilter> _filters = new List<ContentFilter>();
         private static ContentProcessor _instance = null;
 
-        ////HACK: Need to signal UI that a users notification count changes. This is a dirty way to accomplish this as a workaround.
-        //public static Action<string> UserNotificationChanged;
-
         public List<ContentFilter> Filters
         {
             get { return _filters; }
@@ -54,12 +51,13 @@ namespace Voat.Utilities.Components
                         {
                             var p = new ContentProcessor();
                             p.Filters.AddRange(new ContentFilter[] {
-                                //new UserMentionNotificationFilter(),
+
                                 new UserMentionLinkFilter(),
                                 new SubverseLinkFilter(),
                                 new SetLinkFilter(),
                                 new RawHyperlinkFilter(),
-                                new RedditLinkFilter()
+                                new RedditLinkFilter(),
+                                new MaliciousMarkdownQuoteFilter()
                             });
                             _instance = p;
                         }
@@ -80,10 +78,10 @@ namespace Voat.Utilities.Components
             {
                 return content;
             }
-            string c = content;
+            string result = content;
             var inbound = Filters.FindAll(x => (stage & x.ProcessingStage) > 0).OrderByDescending(x => x.Priority).ToList();
-            inbound.ForEach(y => c = y.Process(c, context));
-            return c;
+            inbound.ForEach(y => result = y.Process(result, context));
+            return result;
         }
     }
 }
